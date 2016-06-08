@@ -6,7 +6,7 @@ var chalk = require('chalk');
 var DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
 
 var mongoose = require('mongoose');
-var db = mongoose.connect(DATABASE_URI).connection;
+// var db = mongoose.connect(DATABASE_URI).connection;
 
 // Require our models -- these should register the model into mongoose
 // so the rest of the application can simply call mongoose.model('User')
@@ -14,8 +14,9 @@ var db = mongoose.connect(DATABASE_URI).connection;
 require('./models');
 
 var startDbPromise = new Promise(function (resolve, reject) {
-    db.on('open', resolve);
-    db.on('error', reject);
+	resolve()
+    // db.on('open', resolve);
+    // db.on('error', reject);
 });
 
 console.log(chalk.yellow('Opening connection to MongoDB . . .'));
