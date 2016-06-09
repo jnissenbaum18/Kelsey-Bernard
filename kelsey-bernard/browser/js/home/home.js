@@ -2280,7 +2280,7 @@ app.controller('homeCtrl', function ($scope, AuthService, $state) {
 	  }
 	]
 
-	var scene
+	var scene = new THREE.Scene();
 	var renderer 
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000)
 	var controls = new THREE.OrbitControls( camera, document.getElementById('canvas') );
@@ -2317,8 +2317,13 @@ app.controller('homeCtrl', function ($scope, AuthService, $state) {
 
 		KC = $scope.kelseyConstant * 1e14
 
-		scene = null
-		scene = new THREE.Scene();
+		for (var i = scene.children.length - 1; i >= 0; i--) {
+		    let child = scene.children[i];
+
+		    if ( child.type !== 'plane' && child.type !== 'camera' ) { // plane & camera are stored earlier
+		      scene.remove(child);
+		    }
+		 }
 
 		starObjects = []
 
