@@ -2519,8 +2519,8 @@ app.controller('homeCtrl', function ($scope, AuthService, $state) {
 		var loader = new THREE.FontLoader()
 
 		loader.load( '/three/examples/fonts/helvetiker_bold.typeface.json', function ( font ) { 
-
-			var geometry = new THREE.TextGeometry(star.catalogName, {
+ 
+			var geometry = new THREE.TextGeometry((!!star.properName ? star.properName : star.catalogName), {
 				font: font, 
 				height: 1,
 				size: 2
